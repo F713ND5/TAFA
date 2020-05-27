@@ -38,12 +38,12 @@ def myFriend(ses, next = None):
 def onlineFriend(ses, next = None):
 	out = []
 	html = ses.session.get("https://mbasic.facebook.com/buddylist.php").text
-	data = parsing.to_bs4(html).find_all("img", {"src":"https://static.xx.fbcdn.net/rsrc.php/v3/ym/r/bzGumJjigJ0.png"})
+	data = parsing.to_bs4(html).find_all("img", {"src":lambda x: "https://static.xx.fbcdn.net/rsrc.php/v3/ym/r/bzGumJjigJ0.png" in x})
 	data = [x.parent.parent for x in data]
 	del data[0]
 	for x in data:
 		a_class = x.find("a")
 		name = a_class.text
-		id_ = a_class["href"].split("?fbid=")[1].split("&")[0]
+		id_ = a_class["href"].split("fbid=")[1].split("&")[0]
 		out.append((name, id_))
-	return Output(items = out, html = html)
+	return Output(items = out, html = html, session_number = ses.session_number)

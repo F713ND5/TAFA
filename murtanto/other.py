@@ -10,7 +10,7 @@ import re
 def msgUrl(ses, next = None):
 	html = ses.session.get("https://mbasic.facebook.com/messages" if not next else next).text
 	data = parsing.parsing_href(html, "/read/")
-	next = parsing.parsing_href_regex(html, r"?pageNum.*selectable", one = True)
+	next = parsing.parsing_href_regex(html, r"[?]pageNum.*selectable", one = True)
 	return Output(items = data, next = next, html = html, session_number = ses.session_number)
 
 def find_id_friend(ses, name):

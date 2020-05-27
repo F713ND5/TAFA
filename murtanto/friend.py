@@ -37,7 +37,7 @@ def myFriend(ses, next = None):
 @check_login
 def onlineFriend(ses, next = None):
 	out = []
-	html = ses.session.get("https://mbasic.facebook.com/buddylist.php")
+	html = ses.session.get("https://mbasic.facebook.com/buddylist.php").text
 	data = parsing.to_bs4(html).find_all("img", {"src":"https://static.xx.fbcdn.net/rsrc.php/v3/ym/r/bzGumJjigJ0.png"})
 	data = [x.parent.parent for x in data]
 	del data[0]

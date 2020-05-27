@@ -521,6 +521,6 @@ try:
 	home()
 except KeyboardInterrupt:
 	exit(f"   {p}[!]{w} Oke Sob !!!")
-#except Exception as e:
-#	print("   [err] " + str(e))
-#	enter()
+except Exception as e:
+	print("   [err] " + str(e))
+	enter()
